@@ -1,0 +1,8 @@
+form {
+  padding-bottom: 2vh;
+  border-bottom: 2px solid black;
+}
+.buttons {
+  display: flex;
+  margin-top: 1vh;
+}
