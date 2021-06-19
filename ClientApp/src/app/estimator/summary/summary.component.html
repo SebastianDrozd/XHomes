@@ -1,0 +1,89 @@
+<div class="container">
+    <br>
+    <h1 style="color:rgb(0, 102, 255)">Estimate Summary</h1>
+    <br>
+    <br>
+    <br>
+    <div class="list-group">
+        <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
+            <h3>Customer Information</h3>
+        </button>
+        <button type="button" class="list-group-item list-group-item-action">Name: {{customer.firstName + " " + customer.lastName}}</button>
+        <button type="button" class="list-group-item list-group-item-action">City: {{customer.city}}</button>
+        <button type="button" class="list-group-item list-group-item-action">State: {{customer.state}}</button>
+        <button type="button" class="list-group-item list-group-item-action">Zipcode: {{customer.zip}}</button>
+        <button type="button" class="list-group-item list-group-item-action">PhoneNumber: {{customer.phone}}</button>
+        <button type="button" class="list-group-item list-group-item-action">Email: {{customer.email}}</button>
+        <button type="button" class="list-group-item list-group-item-action">Customer Notes: {{customer.description}}</button>
+
+      </div>
+   
+
+    
+    
+    <br>
+    <br>
+    <br>
+    <div class="list-group">
+        <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
+            <h3>Work Information</h3>
+        </button>
+        <button type="button" class="list-group-item list-group-item-action">JobType: {{workEstimate.jobType}}</button>
+        <button type="button" class="list-group-item list-group-item-action">Difficulty: {{workEstimate.difficulty}}</button>
+        <button type="button" class="list-group-item list-group-item-action">Condition: {{workEstimate.condition}}</button>
+        <button type="button" class="list-group-item list-group-item-action">Description: {{workEstimate.workDescription}}</button>
+        <button type="button" class="list-group-item list-group-item-action">Tasks:  <ol class="list-group list-group-numbered" *ngFor = "let task of tasks">
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold"><b>{{task.title}}</b></div>
+                {{task.description}}
+              </div>
+              <span class="badge bg-primary rounded-pill">{{task.priority}}</span>
+            </li>
+          </ol> </button>
+        
+        
+
+      </div>
+      
+      <br>
+      <br>
+      <br>
+      <div class="list-group">
+        <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
+            <h3>Material Summary</h3>
+        </button>
+        <button type="button" class="list-group-item list-group-item-action">Description {{materialSummary.description}}</button>   
+        <button type="button" class="list-group-item list-group-item-action">Materials:  <ol class="list-group list-group-numbered" *ngFor = "let material of materials">
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold"><b>{{material.material}}</b></div>
+                {{material.matDescription}}
+              </div>
+              <span class="badge bg-primary rounded-pill">{{material.price}}</span>
+            </li>
+          </ol> </button>
+        
+        
+
+      </div>
+      
+
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+    
+
+
+    <button class="btn btn-success">Save Estimate</button>
+    <button style="margin-left : 2vh" (click) ="download()" class="btn btn-info">Download Estimate</button>
+    <button style="margin-left : 2vh" class="btn btn-danger">Delete Current Estimate and Start Over</button>
+    <br>
+      <br>
+      <br><br>
+      <br>
+      <br>
+
+</div>

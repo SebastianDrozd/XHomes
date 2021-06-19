@@ -16,6 +16,7 @@ import { EstimatorComponent } from './estimator/estimator.component';
 import { UserInfoComponent } from './estimator/user-info/user-info.component';
 import { WorkSummaryComponent } from './estimator/work-summary/work-summary.component';
 import { MaterialsComponent } from './estimator/materials/materials.component';
+import { SummaryComponent } from './estimator/summary/summary.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { MaterialsComponent } from './estimator/materials/materials.component';
     EstimatorComponent,
     UserInfoComponent,
     WorkSummaryComponent,
-    MaterialsComponent
+    MaterialsComponent,
+    SummaryComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -37,6 +39,11 @@ import { MaterialsComponent } from './estimator/materials/materials.component';
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'estimator', component: EstimatorComponent },
+      { path: 'estimator/customer', component: UserInfoComponent },
+      { path: 'estimator/work', component: WorkSummaryComponent },
+      { path: 'estimator/summary', component: SummaryComponent },
+      
+      { path: 'estimator/materials', component: MaterialsComponent },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
     ])

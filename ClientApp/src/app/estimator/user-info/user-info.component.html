@@ -1,41 +1,36 @@
-<form class="needs-validation" novalidate>
-    <br>
-    <h1>Customer Info</h1>
+<form class="needs-validation" #userForm="ngForm" novalidate>
+    
+    <h1 class="Titles">Customer Info</h1>
     <div class="form-row">
-        
       <div class="col-md-6 mb-3">
         <label for="validationCustom01">First name</label>
-        <input [(ngModel)] ="firstName" class="form-control" id="validationCustom01"  required>
-        <div class="valid-feedback">
-          Looks good!
-        </div>
+        <input  ngModel name="firstName" class="form-control" id="validationCustom01"  required>
+        
       </div>
       <div class="col-md-6 mb-3">
         <label for="validationCustom02">Last name</label>
-        <input type="text" class="form-control" id="validationCustom02"  required>
-        <div class="valid-feedback">
-          Looks good!
-        </div>
+        <input ngModel type="text" class="form-control" id="validationCustom02" name="lastName" required>
+        
       </div>
     </div>
     <div class="form-row">
       <div class="col-md-6 mb-3">
         <label for="validationCustom03">City</label>
-        <input type="text" class="form-control" id="validationCustom03" required>
+        <input ngModel name="city" type="text" class="form-control" id="validationCustom03" required>
         <div class="invalid-feedback">
           Please provide a valid city.
         </div>
       </div>
       <div class="col-md-3 mb-3">
         <label for="validationCustom04">State</label>
-        <input type="text" class="form-control" id="validationCustom04"  required>
+        <input ngModel name="state" type="text" class="form-control" id="validationCustom04"  required>
         <div class="invalid-feedback">
           Please provide a valid state.
         </div>
       </div>
       <div class="col-md-3 mb-3">
         <label for="validationCustom05">Zip</label>
-        <input type="text" class="form-control" id="validationCustom05"  required>
+        <input ngModel name="zip" type="text" class="form-control" id="validationCustom05"  required>
         <div class="invalid-feedback">
           Please provide a valid zip.
         </div>
@@ -45,29 +40,25 @@
         
         <div class="col-md-6 mb-3">
           <label for="validationCustom01">Phone Number</label>
-          <input type="text" class="form-control" id="validationCustom01"   required>
-          <div class="valid-feedback">
-            Looks good!
-          </div>
+          <input ngModel name="phone" type="text" class="form-control" id="validationCustom01"   required>
+          
         </div>
         <div class="col-md-6 mb-3">
           <label for="validationCustom02">Email</label>
-          <input type="text" class="form-control" id="validationCustom02"  value="" required>
-          <div class="valid-feedback">
-            Looks good!
-          </div>
+          <input ngModel name="email" type="text" class="form-control" id="validationCustom02"  value="" required>
+          
         </div>
       </div>
       <br>
       <div class="form-floating">
-        <textarea class="form-control" placeholder="Customer Notes" id="floatingTextarea2" style="height: 100px"></textarea>
+        <textarea ngModel name="description" class="form-control" placeholder="Customer Notes" id="floatingTextarea2" style="height: 100px"></textarea>
       </div>
       <br>
-    <div class="form-group ">
+    <div style="margin-left: 3vh;" class="form-group ">
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+        <input ngModel name="save" class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
         <label class="form-check-label" for="invalidCheck">
-          Agree to terms and conditions
+         Save Customer to Database?
         </label>
         <div class="invalid-feedback">
           You must agree before submitting.
@@ -75,7 +66,8 @@
       </div>
     </div>
     <br>
-    <button (click) = "continue()" class="btn btn-success" type="submit">Save</button>
+    <button  class="btn btn-primary" (click) = "transfer(userForm.value)" type="submit">Conitnue</button>
+    <button style="margin-left: 1vh;" (click) = "userForm.resetForm()"  class="btn btn-danger" type="submit">Clear</button>
     <br>
     <br>
     

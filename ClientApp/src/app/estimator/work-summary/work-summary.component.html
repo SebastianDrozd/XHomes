@@ -1,20 +1,22 @@
 <div>
-    <br>
-    <h1 class="Title">Work Summary</h1>
-    <form >
+    <h1 class="Titles">Work Summary</h1>
+    <form #userForm="ngForm" >
        
         <div class="auto">
             <p>Job Type</p>
             <div class="input-group mb-3">
-                <input type="text" class="form-control" aria-label="Text input with dropdown button">
-                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="true">Dropdown</button>
-                <ul class="dropdown-menu dropdown-menu-end">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Separated link</a></li>
-                </ul>
+                <input  ngModel name="jobType" type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Job Type">
+                
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dropdown button
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </div>
+                </div>
               </div>
           
         </div>
@@ -23,27 +25,25 @@
             
             
           </div>
+          <br>
           <div class="form-row">
         
-            <div class="col-md-6 mb-3">
-                <label for="customRange1">Work Difficulty</label>
-                <input type="range" class="custom-range" id="customRange1">
-              <div class="valid-feedback">
-                Looks good!
-              </div>
+            <div class="col-md-4 mb-6">
+                <p>Work Difficulty</p>
+                <input style="width: 20em; margin-top: 2vh;" min="0" max= "10" ngModel name="difficulty" type="range" class="custom-range" id="customRange1">
+              
             </div>
-            <div class="col-md-6 mb-3">
-                <label for="customRange1">Condition</label>
-                <input type="range" class="custom-range" id="customRange1">
-              <div class="valid-feedback">
-                Looks good!
-              </div>
+            <div class="col-md-6 mb-6">
+              <p>Condition</p>
+                <input style="width: 20em; margin-top: 2vh; " ngModel name="condition" min="0" max= "10"  type="range" class="custom-range" id="customRange1">
+              
             </div>
           </div>
         
-          
+          <br>
+          <br>
           <div class="form-floating">
-            <textarea class="form-control" placeholder="Description" id="floatingTextarea2" style="height: 150px"></textarea>
+            <textarea ngModel name="workDescription" class="form-control" placeholder="Description" id="floatingTextarea2" style="height: 150px"></textarea>
           </div>
         
           <br>
@@ -53,37 +53,50 @@
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">Task</th>
+                <th scope="col">Description</th>
+                <th scope="col">Priority</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
+              <tr *ngFor = "let task of tasks">
+                <th scope="row">{{task.id}}</th>
+                <td>{{task.title}}</td>
+                <td>{{task.description}}</td>
+                <td>{{task.priority}}</td>
               </tr>
             </tbody>
           </table>
           <br>
           <br>
+          <h3>Add a new Task</h3>
+          <div class="form-row">
+            
+            <div style="margin-bottom: 1vh !important;"class="col-md-4 mb-6">
+                <input ngModel name="title" style="width: 20em; margin-top: 2vh;" placeholder ="Task Name"class="form-control"  type="text" >
+              
+            </div>
+            <br>
+            <div class="col-md-12 mb-6">
+              <div class="form-floating">
+            <textarea ngModel name="description" class="form-control" placeholder="Description" id="floatingTextarea2" style="height: 150px"></textarea>
+          </div>
+          <br>
+          <div class="col-md-6 mb-6">
+            <p>Priority</p>
+            <input ngModel name="priority" style="width: 15em; margin-top: 2vh;" min="0" max= "10" ngModel type="range" class="custom-range" id="customRange1">
+            <button style="margin-left: 1vh;" class="btn btn-success" (click) = "addTask(userForm.value)">Add Task</button>
+          
+        </div>
+        
+            
+          </div>
+          </div>
           <br>
           <br>
         
-
+          <button  class="btn btn-primary" (click) = "transfer(userForm.value)" type="submit">Conitnue</button>
+          <button style="margin-left: 1vh;"  class="btn btn-danger" type="submit">Clear</button>
       </form>
     
 </div>

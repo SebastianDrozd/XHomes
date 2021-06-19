@@ -4,90 +4,71 @@
     <br>
     <h1 class="Title">Materials</h1>
     <br>
-    <form >
-       
-        <div class="auto">
-            <p>Job Type</p>
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" aria-label="Text input with dropdown button">
-                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="true">Dropdown</button>
-                <ul class="dropdown-menu dropdown-menu-end">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Separated link</a></li>
-                </ul>
-              </div>
-          
-        </div>
-       
-          <div class="mb-3">
-            
-            
-          </div>
+    <form #userForm = "ngForm" >   
+      {{userForm.value | json}}     
           <div class="form-row">
         
-            <div class="col-md-6 mb-3">
-                <label for="customRange1">Work Difficulty</label>
-                <input type="range" class="custom-range" id="customRange1">
-              <div class="valid-feedback">
-                Looks good!
-              </div>
-            </div>
-            <div class="col-md-6 mb-3">
-                <label for="customRange1">Condition</label>
-                <input type="range" class="custom-range" id="customRange1">
-              <div class="valid-feedback">
-                Looks good!
+            <div class="col-md-12 mb-3">
+              <div class="form-floating">
+                <textarea ngModel name="description" class="form-control" placeholder="Description" id="floatingTextarea2" style="height: 150px"></textarea>
               </div>
             </div>
           </div>
-        
-          
-          <div class="form-floating">
-            <textarea class="form-control" placeholder="Description" id="floatingTextarea2" style="height: 150px"></textarea>
-          </div>
+               
         
           <br>
           <br>
-          <h2>Tasks</h2>
+          <h2>Individual Materials</h2>
+          <br>
           <table class="table table-hover">
             <thead>
               <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">Material</th>
+                <th scope="col">Description</th>
+                <th scope="col">Cost</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
+              <tr *ngFor = "let material of materials">
+                <td>{{material.material}}</td>
+                <td>{{material.matDescription}}</td>
+                <td>{{material.price}}</td>
               </tr>
             </tbody>
           </table>
           <br>
           <br>
-         
+          <h3>Add Material</h3>
+          <div class="form-row">
+            
+            <div style="margin-bottom: 1vh !important;"class="col-md-4 mb-6">
+                <input ngModel name="material" style="width: 20em; margin-top: 2vh;" placeholder ="Material  Name"class="form-control"  type="text" >
+              
+            </div>
+            <br>
+            <div class="col-md-12 mb-6">
+              <div class="form-floating">
+            <textarea ngModel name="matDescription" class="form-control" placeholder="Material Description" id="floatingTextarea2" style="height: 150px"></textarea>
+          </div>
+          <br>
+          <div class="col-md-4 mb-6">
+            <input ngModel name="price" placeholder="$Price"  type="text" class="form-control" >
+            <button class="btn btn-success" (click) = "addMaterial(userForm.value)">Add Material</button>
+          
+        </div>
         
-
+        {{userForm.value | json}}
+            
+          </div>
+          </div>
+          <br>
+          <br>
+         
+        <button (click)= "transfer(userForm.value)" class="btn btn-success">Finish</button>
+        <button style="margin-left: 1vh;" class="btn btn-danger">Clear</button>
       </form>
-    
+    <br>
+    <br>
 </div>
 
 
