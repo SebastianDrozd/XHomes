@@ -5,7 +5,7 @@
     <h1 class="Title">Materials</h1>
     <br>
     <form #userForm = "ngForm" >   
-      {{userForm.value | json}}     
+        
           <div class="form-row">
         
             <div class="col-md-12 mb-3">
@@ -41,25 +41,28 @@
           <h3>Add Material</h3>
           <div class="form-row">
             
-            <div style="margin-bottom: 1vh !important;"class="col-md-4 mb-6">
+            <br>
+            <div style="margin-bottom: 1vh !important;"class="col-md-6 mb-6">
                 <input ngModel name="material" style="width: 20em; margin-top: 2vh;" placeholder ="Material  Name"class="form-control"  type="text" >
               
             </div>
             <br>
-            <div class="col-md-12 mb-6">
+            <br>
+            <div class="col-md-8 mb-6">
               <div class="form-floating">
             <textarea ngModel name="matDescription" class="form-control" placeholder="Material Description" id="floatingTextarea2" style="height: 150px"></textarea>
           </div>
+        </div>
           <br>
-          <div class="col-md-4 mb-6">
-            <input ngModel name="price" placeholder="$Price"  type="text" class="form-control" >
-            <button class="btn btn-success" (click) = "addMaterial(userForm.value)">Add Material</button>
+          <div style="margin-top: 1vh !important;"class="col-md-6 mb-6">
+            <input ngModel name="price" style="width: 20em;" placeholder="$Price"  type="text" class="form-control" >
+            <button style="margin-top: 1vh !important;" class="btn btn-primary" (click) = "addMaterial(userForm.value)">Add Material</button>
           
         </div>
         
-        {{userForm.value | json}}
+        
             
-          </div>
+        
           </div>
           <br>
           <br>

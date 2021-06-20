@@ -2,25 +2,37 @@
 
   <br>
   <br>
-  <h1>Welcome to the Estimator</h1>
   <br>
   <br>
-  <div style="display: flex;">
-  <h3>Create new Estimate</h3>
-  
+  <div class="card text-center">
+    <div class="card-header" style="background-color: #007bff;">
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Create a new Estimate</h5>
+      <p class="card-text">Save and export your new estimate</p>
+      <a class="btn btn-primary" routerLink="customer">Create new </a>
+    </div>
+    <div class="card-footer text-muted">
+      Extreme Homes
+    </div>
+  </div>
+<br>
+<br>
+<br>
+<div class="col-md-12 mb-3">
+  <div class="list-group">
+    <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
+      My Estimates
+    </button>
+    <button *ngFor="let estimate of estimates"type="button" class="list-group-item list-group-item-action">{{estimate.firstName}} <button style="margin-left: 1vh;" class="btn btn-danger float-right" (click) ="deleteEstimate(estimate.id)">Del</button>   <button class="btn btn-info float-right">Download</button><button style="margin-right: 2vh !important;" class="btn btn-success float-right">Edit</button>  </button>
+    
+    <button type="button" class="list-group-item list-group-item-action" disabled><br></button>
+  </div>
 </div>
-<a routerLink="customer">Create new </a>
-    
 <br>
 <br>
 <br>
-<br>
-<br>
-<br>
-<h3>You currently have no created estimates</h3>
-    
-    
-    <br>
+
     <br>
     <br>
     <br>

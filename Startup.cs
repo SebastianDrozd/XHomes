@@ -29,9 +29,16 @@ namespace XHomes
         {
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<ICustomerRepo, PgCustomerRepo>();
+            services.AddScoped<IEstimatePgRepo, EstimatePgRepo>();
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<FileContext>(options =>
+               options.UseNpgsql(
+                   Configuration.GetConnectionString("postgres")));
+            services.AddDbContext<EstimateContext>(options =>
+               options.UseNpgsql(
+                   Configuration.GetConnectionString("postgres"))) ;
 
             services.AddDbContext<CustomerContext>(options => options.UseNpgsql(Configuration.GetConnectionString("postgres")));
 

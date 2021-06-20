@@ -41,9 +41,9 @@ export class SummaryComponent implements OnInit {
   }
 
   download(){
-    this.estimate = {firstName : this.customer.firstName, lastName : this.customer.lastName, city: this.customer.city, state : this.customer.state, zip : this.customer.zip, phone: this.customer.phone, email : this.customer.email, description: this.customer.description }
+    this.estimate = {firstName : this.customer.firstName, lastName : this.customer.lastName, city: this.customer.city, state : this.customer.state, zip : this.customer.zip, phone: this.customer.phone, email : this.customer.email, description: this.customer.description, jobType : this.workEstimate.jobType, condition : this.workEstimate.condition, difficulty : this.workEstimate.condition, tasks : this.tasks,matDescription : this.materialSummary.description, materials : this.materials }
       console.log(this.estimate)
-      this.summaryService.downloadDocument(this.estimate).subscribe(blob => saveAs(blob, 'Sebastian.docx'));
+      this.summaryService.downloadDocument(this.estimate).subscribe(blob => saveAs(blob, 'ExtremeHomesEstimate.docx'));
   }
 
   downLoadFile(data: any, type: string) {

@@ -29,7 +29,7 @@ export class WorkSummaryComponent implements OnInit {
   addTask(input)
   {
     this.id = this.id + 1;
-    this.task = {id : this.id, title: input.title, description : input.description, priority : input.priority}
+    this.task = { title: input.title, description : input.description, priority : input.priority}
     
       console.log("Input from addtask form is ",input)
 
