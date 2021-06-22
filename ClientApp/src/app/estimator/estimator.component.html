@@ -4,30 +4,30 @@
   <br>
   <br>
   <br>
-  <div class="card text-center">
-    <div class="card-header" style="background-color: #007bff;">
-    </div>
-    <div class="card-body">
+  <div class="row">
+  <div class="card text-center col-md-3 mb-3" style="max-height: 25vh !important; border-radius: 20px;" >
+
+    <div class="card-body " >
       <h5 class="card-title">Create a new Estimate</h5>
       <p class="card-text">Save and export your new estimate</p>
       <a class="btn btn-primary" routerLink="customer">Create new </a>
     </div>
-    <div class="card-footer text-muted">
-      Extreme Homes
-    </div>
+    
   </div>
-<br>
-<br>
-<br>
-<div class="col-md-12 mb-3">
+
+<div class="col-md-8 mb-3">
   <div class="list-group">
     <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
       My Estimates
     </button>
-    <button *ngFor="let estimate of estimates"type="button" class="list-group-item list-group-item-action">{{estimate.firstName}} <button style="margin-left: 1vh;" class="btn btn-danger float-right" (click) ="deleteEstimate(estimate.id)">Del</button>   <button class="btn btn-info float-right">Download</button><button style="margin-right: 2vh !important;" class="btn btn-success float-right">Edit</button>  </button>
+    <button style="text-align: center; padding: 4em;" *ngIf="estimates == null" type="button" class="list-group-item list-group-item-action">You have no estimates</button>
+    <button *ngFor="let estimate of estimates"type="button" class="list-group-item list-group-item-action">{{estimate.firstName}}
+       <button style="margin-left: 1vh;" class="btn btn-danger float-right" (click) ="deleteEstimate(estimate.id)">Del</button>
+          <button class="btn btn-info float-right">Download</button><button style="margin-right: 2vh !important;" class="btn btn-success float-right" (click) ="viewEstimate(estimate)" >View</button>  </button>
     
     <button type="button" class="list-group-item list-group-item-action" disabled><br></button>
   </div>
+</div>
 </div>
 <br>
 <br>

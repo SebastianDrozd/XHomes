@@ -1,21 +1,32 @@
 <form class="needs-validation" #userForm="ngForm" novalidate>
-    
+  <br>
+  <div class="progress">
+    <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+  </div>
     <h1 class="Titles">Customer Info</h1>
-    <hr class="float-left" style="width: 50%"/>
+    
     <br>
     <br>
-    <br>
-    <br>
+    
     <div class="form-row">
       <div class="col-md-6 mb-3">
         <label for="validationCustom01">First name</label>
-        <input  ngModel name="firstName" class="form-control" id="validationCustom01"  required>
-        
+        <input type="text"  ngModel name="firstName" class="form-control" id="validationCustom01"  required >
+        <div *ngIf="userForm.controls['firstName'].invalid && (userForm.controls['firstName'].dirty || userForm.controls['firstName'].touched)" class="alert alert-danger">
+          <div *ngIf="userForm.controls['firstName'].errors.required">
+         First Name is required.
+        </div>
       </div>
+      </div>
+      
       <div class="col-md-6 mb-3">
         <label for="validationCustom02">Last name</label>
         <input ngModel type="text" class="form-control" id="validationCustom02" name="lastName" required>
-        
+        <div *ngIf="userForm.controls['lastName'].invalid && (userForm.controls['lastName'].dirty || userForm.controls['lastName'].touched)" class="alert alert-danger">
+          <div *ngIf="userForm.controls['lastName'].errors.required">
+          Last Name is required.
+        </div>
+      </div>
       </div>
     </div>
     <div class="form-row">
@@ -45,23 +56,31 @@
         
         <div class="col-md-6 mb-3">
           <label for="validationCustom01">Phone Number</label>
-          <input ngModel name="phone" type="text" class="form-control" id="validationCustom01"   required>
-          
+          <input pattern="\d*" ngModel name="phone" type="text" class="form-control" id="validationCustom01" >
+          <div *ngIf="userForm.controls['phone'].invalid && (userForm.controls['phone'].dirty || userForm.controls['phone'].touched)" class="alert alert-danger">
+            <div *ngIf="userForm.controls['phone'].errors">
+            Phone number is in the incorrect format
+          </div>
+        </div>
         </div>
         <div class="col-md-6 mb-3">
           <label for="validationCustom02">Email</label>
-          <input ngModel name="email" type="text" class="form-control" id="validationCustom02"  value="" required>
-          
+          <input ngModel name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" type="text" class="form-control" id="validationCustom02"  value="">
+          <div *ngIf="userForm.controls['email'].invalid && (userForm.controls['email'].dirty || userForm.controls['email'].touched)" class="alert alert-danger">
+            <div *ngIf="userForm.controls['email'].errors">
+            Email is in an incorrect format
+          </div>
+        </div>
         </div>
       </div>
       <br>
       <div class="form-floating">
-        <textarea ngModel name="description" class="form-control" placeholder="Customer Notes" id="floatingTextarea2" style="height: 100px"></textarea>
+        <textarea ngModel name="description" class="form-control" placeholder="Customer Notes" id="floatingTextarea2" style="height: 100px; border-radius: 20px;"></textarea>
       </div>
       <br>
     <div style="margin-left: 3vh;" class="form-group ">
       <div class="form-check">
-        <input ngModel name="save" class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+        <input ngModel name="save" class="form-check-input" type="checkbox" value="" id="invalidCheck" >
         <label class="form-check-label" for="invalidCheck">
          Save Customer to Database?
         </label>
@@ -71,7 +90,7 @@
       </div>
     </div>
     <br>
-    <button  class="btn btn-primary" (click) = "transfer(userForm.value)" type="submit">Conitnue</button>
+    <button [disabled]="!userForm.valid"  class="btn btn-primary" (click) = "transfer(userForm.value)" type="submit">Continue</button>
     <button style="margin-left: 1vh;" (click) = "userForm.resetForm()"  class="btn btn-danger" type="submit">Clear</button>
     <br>
     <br>

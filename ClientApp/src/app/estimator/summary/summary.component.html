@@ -1,6 +1,11 @@
 <div class="container">
     <br>
-    <h1 style="color: #007bff"><b>Estimate Summary</b></h1>
+    <br>
+  <div class="progress">
+    <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
+  </div>
+  <br>
+    <h1 class="Titles text-center" ><b>Estimate Summary</b></h1>
     <br>
     <br>
     <br>
@@ -77,9 +82,9 @@
     
 
 
-    <button class="btn btn-success">Save Estimate</button>
+    <button (click) ="saveEstimate()" class="btn btn-success">Save Estimate</button>
     <button style="margin-left : 2vh" (click) ="download()" class="btn btn-info">Download Estimate</button>
-    <button style="margin-left : 2vh" class="btn btn-danger">Delete Current Estimate and Start Over</button>
+    <button (click) = "deleteEstimate()"style="margin-left : 2vh" class="btn btn-danger">Delete Current Estimate and Start Over</button>
     <br>
       <br>
       <br><br>

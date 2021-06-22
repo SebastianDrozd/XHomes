@@ -37,6 +37,10 @@ export class WorkSummaryComponent implements OnInit {
 
   }
 
+  deleteTask(task : ITast){
+    this.tasks = this.tasks.filter(x => x.title !== task.title)
+  }
+
   transfer(input){
 
     console.log(input)

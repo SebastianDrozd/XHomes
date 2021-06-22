@@ -17,6 +17,7 @@ import { UserInfoComponent } from './estimator/user-info/user-info.component';
 import { WorkSummaryComponent } from './estimator/work-summary/work-summary.component';
 import { MaterialsComponent } from './estimator/materials/materials.component';
 import { SummaryComponent } from './estimator/summary/summary.component';
+import { ViewestimateComponent } from './estimator/viewestimate/viewestimate.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { SummaryComponent } from './estimator/summary/summary.component';
     UserInfoComponent,
     WorkSummaryComponent,
     MaterialsComponent,
-    SummaryComponent
+    SummaryComponent,
+    ViewestimateComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -41,6 +43,7 @@ import { SummaryComponent } from './estimator/summary/summary.component';
       { path: 'estimator', component: EstimatorComponent },
       { path: 'estimator/customer', component: UserInfoComponent },
       { path: 'estimator/work', component: WorkSummaryComponent },
+      { path: 'summary/:id', component: ViewestimateComponent },
       { path: 'estimator/summary', component: SummaryComponent },
       
       { path: 'estimator/materials', component: MaterialsComponent },

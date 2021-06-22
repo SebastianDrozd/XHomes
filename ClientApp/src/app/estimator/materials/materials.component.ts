@@ -32,5 +32,8 @@ export class MaterialsComponent implements OnInit {
 
     this.materials.push(this.material)
   }
+  deleteTask(task){
+    this.materials= this.materials.filter(x => x.material !== task.material)
+  }
 
 }

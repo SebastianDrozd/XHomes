@@ -19,7 +19,7 @@ namespace XHomes.Data
 
         public IEnumerable<Estimate> GetAllEstimates()
         {
-            return context.Estimate.ToList();
+            return context.Estimate.Include(b => b.materials).Include(b => b.tasks).ToList();
         }
 
         public void SaveEstimate(Estimate estimate)

@@ -4,6 +4,7 @@ import { IUser } from 'src/api-authorization/authorize.service';
 import { ICustomer } from 'src/app/ICustomer';
 
 import { UserService } from 'src/app/user.service';
+import _swal from 'sweetalert';
 
 @Component({
   selector: 'user-info',
@@ -17,6 +18,7 @@ export class UserInfoComponent implements OnInit {
   constructor(private router : Router, custService : UserService) {
     this.custService = custService;
    }
+   
 
   ngOnInit() {
   }
@@ -29,6 +31,7 @@ export class UserInfoComponent implements OnInit {
     console.log(customer)
     if(customer.save == true){
       this.custService.saveCustomer(customer).subscribe(data => console.log(data));
+      _swal("Customer Created!" , "Continue with your estimate", "success")
     }
     else{
       this.custService.setCustomer(customer) 

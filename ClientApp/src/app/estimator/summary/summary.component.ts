@@ -13,6 +13,7 @@ import { IWorkSummary } from '../work-summary/IWorkSummary';
 import { WorkService } from '../work-summary/work.service';
 import { ISummaryEstimate } from './Estimate';
 import { saveAs } from 'file-saver';
+import swal from 'sweetalert';
 @Component({
   selector: 'app-summary',
   templateUrl: './summary.component.html',
@@ -43,6 +44,8 @@ export class SummaryComponent implements OnInit {
   download(){
     this.estimate = {firstName : this.customer.firstName, lastName : this.customer.lastName, city: this.customer.city, state : this.customer.state, zip : this.customer.zip, phone: this.customer.phone, email : this.customer.email, description: this.customer.description, jobType : this.workEstimate.jobType, condition : this.workEstimate.condition, difficulty : this.workEstimate.condition, tasks : this.tasks,matDescription : this.materialSummary.description, materials : this.materials }
       console.log(this.estimate)
+      swal("Estimate Created!" , "Your estimate will now download", "success")
+    
       this.summaryService.downloadDocument(this.estimate).subscribe(blob => saveAs(blob, 'ExtremeHomesEstimate.docx'));
   }
 
@@ -55,4 +58,12 @@ export class SummaryComponent implements OnInit {
     }
 
 }
+  saveEstimate(){
+    swal("Estimate Created!" , "Your estimate has been successfully saved", "success")
+  }
+
+  deleteEstimate(){
+    swal("Are you sure?" , "Your estimate will be deleted and you will loose all your progress", "error")
+      
+    }
 }

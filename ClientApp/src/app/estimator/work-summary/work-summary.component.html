@@ -1,4 +1,9 @@
 <div>
+  <br>
+  <div class="progress">
+    <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
+  </div>
+  
     <h1 class="Titles">Work Summary</h1>
     <br>
     <form #userForm="ngForm" >
@@ -7,11 +12,11 @@
             <p>Job Type</p>
             <div class="form-row">
             <div class="input-group col-md-6 mb-3">
-                <input  ngModel name="jobType" type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Job Type">
+                <input  ngModel name="jobType" type="text" class="form-control" aria-label="Text input with dropdown button"  required>
                 
                 <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown button
+                  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    View
                   </button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="#">Action</a>
@@ -19,9 +24,15 @@
                     <a class="dropdown-item" href="#">Something else here</a>
                   </div>
                 </div>
+               
               </div>
+              
             </div>
-          
+            <div style="width: 50%;" *ngIf="userForm.controls['jobType'].invalid && (userForm.controls['jobType'].dirty || userForm.controls['jobType'].touched)" class="alert alert-danger">
+              <div *ngIf="userForm.controls['jobType'].errors.required">
+              Job type cannot be left blank
+            </div>
+          </div>
         </div>
       
           <br>
@@ -47,16 +58,18 @@
           <br>
           <br>
           <div class="form-floating">
-            <textarea ngModel name="workDescription" class="form-control" placeholder="Description" id="floatingTextarea2" style="height: 150px"></textarea>
+            <textarea ngModel name="workDescription" class="form-control" placeholder="Description" id="floatingTextarea2" style="height: 150px; border-radius: 20px; "></textarea>
           </div>
         
           <br>
           <br>
-          <h2>Tasks</h2>
+          
+          <ul class="list-group">
+            <li class="list-group-item active"><h5 style="color: white;">Tasks</h5></li>
+          </ul>
           <table class="table table-hover">
             <thead>
               <tr>
-                <th scope="col">#</th>
                 <th scope="col">Task</th>
                 <th scope="col">Description</th>
                 <th scope="col">Priority</th>
@@ -64,10 +77,10 @@
             </thead>
             <tbody>
               <tr *ngFor = "let task of tasks">
-                <th scope="row">{{task.id}}</th>
                 <td>{{task.title}}</td>
                 <td>{{task.description}}</td>
                 <td>{{task.priority}}</td>
+                <td><button (click) = "deleteTask(task)" class="btn btn-danger">X</button></td>
               </tr>
             </tbody>
           </table>
@@ -78,19 +91,24 @@
           <div class="form-row">
             
             <div style="margin-bottom: 1vh !important;"class="col-md-4 mb-6">
-                <input ngModel name="title" style="width: 20em; " placeholder ="Task Name"class="form-control"  type="text" >
-              
+                <input ngModel name="title" style="width: 20em; " placeholder ="Task Name"class="form-control"  type="text" required>
+                <div style="width: 88%; margin-top: 2vh;" *ngIf="userForm.controls['title'].invalid && (userForm.controls['title'].dirty || userForm.controls['title'].touched)" class="alert alert-danger">
+                  <div *ngIf="userForm.controls['title'].errors.required">
+                  Task title cannot be blank
+                </div>
+              </div>
+                <input ngModel name="priority" style="width: 15em; margin-top: 5vh;" min="0" max= "10" ngModel type="range" class="custom-range" id="customRange1">
+                <button  [disabled]="!userForm.valid" style="margin-left: 1vh;" class="btn btn-success" (click) = "addTask(userForm.value)">Add Task</button>
             </div>
             <br>
             <div class="col-md-8 mb-6">
               <div class="form-floating">
-            <textarea ngModel name="description" class="form-control" placeholder="Description" id="floatingTextarea2" style="height: 150px"></textarea>
+            <textarea ngModel name="description" class="form-control" placeholder="Description" id="floatingTextarea2" style="height: 125px;"></textarea>
           </div>
           <br>
           <div class="col-md-6 mb-6">
-            <p>Priority</p>
-            <input ngModel name="priority" style="width: 15em; margin-top: 2vh;" min="0" max= "10" ngModel type="range" class="custom-range" id="customRange1">
-            <button style="margin-left: 1vh;" class="btn btn-success" (click) = "addTask(userForm.value)">Add Task</button>
+            
+           
           
         </div>
         
@@ -100,7 +118,7 @@
           <br>
           <br>
         
-          <button  class="btn btn-primary" (click) = "transfer(userForm.value)" type="submit">Conitnue</button>
+          <button  [disabled]="userForm.controls['jobType'].errors" class="btn btn-primary" (click) = "transfer(userForm.value)" type="submit">Conitnue</button>
           <button style="margin-left: 1vh;"  class="btn btn-danger" type="submit">Clear</button>
       </form>
     

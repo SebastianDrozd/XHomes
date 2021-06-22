@@ -19,6 +19,8 @@ using XHomes.Models;
 using Spire.Doc.Interface;
 using System.Drawing;
 using XHomes.Data;
+using AutoMapper;
+using XHomes.Dtos;
 
 namespace XHomes.Controllers
 {
@@ -27,10 +29,12 @@ namespace XHomes.Controllers
     public class Estimates : ControllerBase
     {
         private readonly IEstimatePgRepo repo;
+        private readonly IMapper mapper;
 
-        public Estimates(IEstimatePgRepo repo)
+        public Estimates(IEstimatePgRepo repo, IMapper mapper)
         {
             this.repo = repo;
+            this.mapper = mapper;
         }
 
         [HttpGet]
@@ -39,7 +43,11 @@ namespace XHomes.Controllers
 
             var estimates = repo.GetAllEstimates();
 
-            return Ok(estimates);
+            if (estimates.Count() == 0)
+                return NotFound();
+
+
+            return Ok(mapper.Map<IEnumerable<EstimateReadDto>>(estimates));
         }
 
         [HttpPost]
@@ -159,9 +167,16 @@ namespace XHomes.Controllers
             return NoContent();
         }
 
+        //api/estimates/id
         [HttpGet("{id}")]
-        public ActionResult<Estimate> GetEstimate(int id) 
+        public ActionResult<EstimateReadDto> GetEstimate(int id) 
         {
+            var estimateModel = repo.GetEstimate(id);
+
+            if (estimateModel != null) {
+                return this.mapper.Map<EstimateReadDto>(estimateModel);
+            }
+
             return Ok(repo.GetEstimate(id));
         }
 
